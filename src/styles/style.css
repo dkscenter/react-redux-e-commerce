@@ -70,3 +70,11 @@ body {
 .sub-text-authentication:hover {
   text-decoration: underline;
 }
+
+.checkout-button {
+  color: #fff;
+}
+
+.margin-right-10-em {
+  margin-right: 10em;
+}
