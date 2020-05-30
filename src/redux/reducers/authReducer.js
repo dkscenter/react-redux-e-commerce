@@ -30,7 +30,17 @@ export default (state = initialState, action) => {
       };
     }
     case "RESET_USER": {
-      return initialState;
+      return {
+        ...state,
+        isLogin: false,
+        profile: {
+          id: null,
+          email: null,
+          first_name: null,
+          last_name: null,
+          avatar: null,
+        },
+      };
     }
     default: {
       return state;
