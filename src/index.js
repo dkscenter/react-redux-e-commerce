@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import AppContainer from './containers/AppContainer';
 import LoginComponent from './components/LoginComponent';
 import UserComponent from './components/UserComponent';
+import ShopComponent from './components/ShopComponent';
 import {
     HashRouter as Router,
     Route,
@@ -20,6 +21,9 @@ function App(){
                     </Route>
                     <Route path="/user">
                         <UserComponent/>
+                    </Route>
+                    <Route path="/shop">
+                        <ShopComponent/>
                     </Route>
                     <Route path="/">
                         <Redirect to="/login"/>
