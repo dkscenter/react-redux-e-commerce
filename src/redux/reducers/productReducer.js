@@ -1,8 +1,8 @@
 const initialState = {
-    page: 0,
-    data: []
-}
+  page: 0,
+  data: [],
+};
 
-export default (state = initialState, action)=>{
-    return state;
-}
+export default (state = initialState, action) => {
+  return state;
+};
