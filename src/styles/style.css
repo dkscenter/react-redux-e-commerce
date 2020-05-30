@@ -1,0 +1,80 @@
+@import "bootstrap.min.css";
+
+body {
+  min-height: 100vh;
+}
+
+.navbar-wrapper {
+  background: #764abc;
+}
+.navbar-list {
+  padding: 0.25em 0.5em;
+}
+
+.navbar-center-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.container-wrapper {
+  min-height: calc(100vh - 94px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-authentication {
+  padding: 1em 2em;
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin: 4em 0;
+  box-shadow: 0 20px 40px #a9a9a9;
+}
+
+.e-commerce-logo {
+  display: block;
+  padding: 1em 0;
+  width: 100px;
+  margin: 0 auto 1em auto;
+}
+
+.sub-text-authentication {
+  display: block;
+  text-align: center;
+  margin-top: 1em;
+  padding: 1em;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+  -webkit-transition: 0.2s all ease-in-out;
+  -moz-transition: 0.2s all ease-in-out;
+  -ms-transition: 0.2s all ease-in-out;
+  -o-transition: 0.2s all ease-in-out;
+}
+
+.sub-text-authentication:hover {
+  text-decoration: underline;
+}
+
+.checkout-button {
+  color: #fff;
+}
+
+.margin-right-10-em {
+  margin-right: 10em;
+}
