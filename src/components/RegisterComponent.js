@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { register } from "../redux/actions/authActions";
 import { Form, FormGroup, Input, Button, Alert } from "reactstrap";
+
+// Step 4 Import connect from react-redux
+// Step 5 Import register action
 
 class RegisterComponent extends Component {
   constructor(props) {
@@ -23,7 +24,6 @@ class RegisterComponent extends Component {
   };
 
   __onSubmit = (e) => {
-    const { register } = this.props;
     const { email, password, confirmPassword } = this.state;
     let errors = [];
     e.preventDefault();
@@ -33,16 +33,20 @@ class RegisterComponent extends Component {
       errors.push("Password didn't match. Try again.");
     if (password.length < 8 || confirmPassword.length < 8)
       errors.push("Password must be at least 8 characters.");
-    if (errors.length === 0) register(this.state, this.props);
+    if (errors.length === 0) {
+      // Step 7 Call register action from props.
+    }
     this.setState({
       errors,
     });
   };
 
   __checkAuth = () => {
-    if (this.props.auth.isLogin) {
+    // Step 8 Check if user is logged in (From redux store)
+    if(false){
       this.props.history.push("/user");
     }
+   
   };
 
   componentDidMount() {
@@ -124,18 +128,5 @@ class RegisterComponent extends Component {
   }
 }
 
-const mapStateToProps = ({ user, product, auth }) => {
-  return {
-    user,
-    product,
-    auth,
-  };
-};
-
-const mapDispatchToProps = {
-  register,
-};
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(RegisterComponent)
-);
+// Step 6 Connect redux and RegisterComponent
+export default withRouter(RegisterComponent);

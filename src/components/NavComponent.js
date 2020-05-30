@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { logout } from "../redux/actions/authActions";
-import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import {
   Navbar,
@@ -16,6 +14,8 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
+// Step 20 Import connect from react-redux
+// Step 21 Import logout action
 
 class NavComponent extends Component {
   constructor(props) {
@@ -32,8 +32,7 @@ class NavComponent extends Component {
   };
 
   logout = () => {
-    const { logout } = this.props;
-    logout();
+    // Step 23 Call logout action from props
   };
 
   showUserInfoModal = () => {
@@ -66,7 +65,9 @@ class NavComponent extends Component {
     );
   };
   render() {
-    const { auth } = this.props;
+    // Step 24 check if user logged in (from redux store)
+    let isLogin = false;
+    let auth = {}
     const { isUserInfoModalShow } = this.state;
     return (
       <Navbar expand="md" className="navbar-wrapper">
@@ -85,7 +86,7 @@ class NavComponent extends Component {
               className="image"
             />
           </NavItem>
-          {auth.isLogin && (
+          {isLogin && (
             <Nav className="mr-auto" navbar>
               <NavItem className="navbar-list navbar-right-image">
                 <img
@@ -114,14 +115,14 @@ class NavComponent extends Component {
         <Nav className="ml-auto mr-auto" navbar>
           <NavItem
             className={`navbar-list navbar-center-title ${
-              auth.isLogin ? "margin-right-10-em" : ""
+              isLogin ? "margin-right-10-em" : ""
             }`}
           >
             React Redux | E-Commerce
           </NavItem>
         </Nav>
         <Nav className="ml-auto" navbar>
-          {auth.isLogin ? (
+          {isLogin ? (
             this.renderUserComponent()
           ) : (
             <Nav className="ml-auto" navbar>
@@ -173,10 +174,5 @@ class NavComponent extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  return {
-    auth,
-  };
-};
-
-export default connect(mapStateToProps, { logout })(withRouter(NavComponent));
+// Step 22 Connect redux and NavComponent
+export default withRouter(NavComponent)

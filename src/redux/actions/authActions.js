@@ -2,41 +2,18 @@ import axios from "axios";
 
 export const login = (payload, props) => {
   return (dispatch) => {
-    axios.get("https://reqres.in/api/users/5").then((res) => {
-      props.history.push("/shop");
-      return dispatch({
-        type: "SET_USER",
-        payload: res.data.data,
-      });
-    });
+    // Step 11 Dispatch login data object to reducers.
   };
 };
 
 export const register = ({ email, password }, props) => {
   return (dispatch) => {
-    axios
-      .post("https://reqres.in/api/register", {
-        email: "eve.holt@reqres.in",
-        password: "pistol",
-      })
-      .then((res) => {
-        props.history.push("/login");
-        return dispatch({
-          type: "SET_REGISTER",
-          payload: {
-            ...res.data,
-            email,
-            password,
-          },
-        });
-      });
+    // Step 3 Dispatch register data object to reducers.
   };
 };
 
 export const logout = () => {
   return (dispatch) => {
-    dispatch({
-      type: "RESET_USER",
-    });
+    // Step 19 Dispatch logout action to reducers.
   };
 };

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { setNumber, setUsername } from "../redux/actions/userActions";
 import { withRouter } from "react-router-dom";
-import { login } from "../redux/actions/authActions";
-import axios from "axios";
-import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+import { Form, FormGroup, Input, Button, Alert } from "reactstrap";
+// Step 12 Import connect from react-redux
+// Step 13 Import login action
 
 class LoginComponent extends Component {
   constructor(props) {
@@ -32,23 +30,28 @@ class LoginComponent extends Component {
   };
 
   __onSubmit = (e) => {
-    const { login, auth } = this.props;
+ 
     const { email, password } = this.state;
     let errors = [];
     e.preventDefault();
-    if (auth.email !== email && auth.password !== password) {
+    // Step 15 Check Email and Password from redux store
+    if (email &&  password) {
       errors.push(
         "Sorry. We couldn't find account with your email. Try again."
       );
     }
-    if (errors.length === 0) login(this.state, this.props);
+    if (errors.length === 0) {
+      // Step 16 Call login action from props
+      this.props.history.push("/shop");
+    }
     this.setState({
       errors,
     });
   };
 
   __checkAuth = () => {
-    if (this.props.auth.isLogin) {
+    // Step 17 Check if user is logged in (From redux store)
+    if (false) {
       this.props.history.push("/user");
     }
   };
@@ -114,20 +117,5 @@ class LoginComponent extends Component {
   }
 }
 
-const mapStateToProps = ({ user, product, auth }) => {
-  return {
-    user,
-    product,
-    auth,
-  };
-};
-
-const mapDispatchToProps = {
-  setNumber,
-  setUsername,
-  login,
-};
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LoginComponent)
-);
+// Step 14 Connect redux and LoginComponent
+export default withRouter(LoginComponent);

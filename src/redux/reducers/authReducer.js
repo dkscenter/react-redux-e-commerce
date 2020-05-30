@@ -1,46 +1,22 @@
 const initialState = {
   isLogin: false,
-  token: null,
-  email: null,
-  password: null,
-  profile: {
-    id: null,
-    email: null,
-    first_name: null,
-    last_name: null,
-    avatar: null,
-  },
+  // Step 1 Set Default state of register data
+  // Step 9 Set Default state of user profile
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case "SET_USER": {
-      return {
-        ...state,
-        isLogin: true,
-        profile: action.payload,
-      };
+      // Step 10 Return new state after login
+      return ;
     }
     case "SET_REGISTER": {
-      return {
-        ...state,
-        token: action.payload.token,
-        email: action.payload.email,
-        password: action.payload.password,
-      };
+      // Step 2 Return new state after register
+      return ;
     }
     case "RESET_USER": {
-      return {
-        ...state,
-        isLogin: false,
-        profile: {
-          id: null,
-          email: null,
-          first_name: null,
-          last_name: null,
-          avatar: null,
-        },
-      };
+      // Step 18 Return new state after logged out
+      return ;
     }
     default: {
       return state;
