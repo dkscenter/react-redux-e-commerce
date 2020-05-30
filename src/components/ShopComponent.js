@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { setProductState, setProductInCart, checkoutInCart } from "../redux/actions/shopAction";
 import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
-import './shop.css';
 
 class ShopComponent extends Component {
   constructor(props) {
@@ -13,10 +12,22 @@ class ShopComponent extends Component {
     }
   }
 
+  componentDidMount() {
+    this.validateToken()
+  }
+
+  componentDidUpdate() {
+    this.validateToken()
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       shopData: nextProps.shop.data
     })
+  }
+
+  validateToken = () => {
+    if(!this.props.auth.token) this.props.history.push("/login")
   }
 
   purchaseProduct = (index) => {
@@ -60,14 +71,8 @@ class ShopComponent extends Component {
     const { shopData } = this.state
 
     return (
-      <div className='shop-container'>
-        <div className='shop'> 
-          {shopData.map(this.shopRender)}
-          <button onClick={this.checkout}>
-            <label>Checkout</label>
-            <label>{`(${this.props.shop.cart.length})`}</label>
-          </button>
-        </div>
+      <div className='shop'> 
+        {shopData.map(this.shopRender)}
       </div>
     )
   }
@@ -78,14 +83,19 @@ ShopComponent.propTypes = {
     data: PropTypes.array.isRequired,
     cart: PropTypes.array.isRequired
   }),
+  auth: PropTypes.shape({
+    token: PropTypes.string,
+    isLogin: PropTypes.bool
+  }),
   setProductState: PropTypes.func,
   setProductInCart: PropTypes.func,
   checkoutInCart: PropTypes.func
 }
 
-const mapStateToProps = ({ shop }) => {
+const mapStateToProps = ({ shop, auth }) => {
   return {
-    shop
+    shop,
+    auth
   };
 };
 

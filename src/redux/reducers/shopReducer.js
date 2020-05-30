@@ -3,7 +3,8 @@ import { SET_PRODUCT_STATE, SET_PRODUCT_IN_CART, CHECKOUT_IN_CART } from '../act
 
 const initialState = {
   data: getProductData(),
-  cart: []
+  cart: [],
+  totalPrice: 0
 }
 
 export default (state = initialState, action) => {
@@ -24,18 +25,21 @@ export default (state = initialState, action) => {
     }
 
     case SET_PRODUCT_IN_CART: {
+      let sum = 0
+      state.cart.push(action.product)
+      state.cart.forEach((item) => { sum += item.price })
+
       return {
         ...state,
-        cart: [
-          ...state.cart,
-          action.product
-        ]
+        totalPrice: sum
       }
     }
 
     case CHECKOUT_IN_CART: {
       return {
-        ...initialState
+        ...state,
+        ...initialState,
+        cart: []
       }
     }
   }

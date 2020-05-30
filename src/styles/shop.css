@@ -1,9 +1,3 @@
-.shop-container {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-
 .shop {
   display: flex;
   flex-wrap: wrap;
@@ -21,7 +15,7 @@
 
 .product:hover {
   cursor: pointer;
-  border: 2px solid #007bff;
+  border: 2px solid #764abc;
   transform: scale(1.05);
 }
 

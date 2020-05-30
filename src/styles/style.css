@@ -1,14 +1,48 @@
 @import "bootstrap.min.css";
+@import "./shop.css";
+@import "./cart.css";
 
 body {
   min-height: 100vh;
 }
 
+.btn-primary {
+  background: #905ae6;
+  border-color: #905ae6;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  background: #764abc;
+  border-color: #905ae6;
+}
+
+.btn-outline-primary {
+  color: #905ae6;
+  border-color: #905ae6;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-outline-primary:hover {
+  background: #905ae6;
+  border-color: #905ae6;
+}
+
 .navbar-wrapper {
   background: #764abc;
+  color: #fff;
 }
+
 .navbar-list {
   padding: 0.25em 0.5em;
+}
+
+.bg-primary {
+  background: #905ae6 !important;
+  padding: 0.25em;
+  color: #fff;
 }
 
 .navbar-center-title {
@@ -45,6 +79,7 @@ body {
   -o-border-radius: 10px;
   margin: 4em 0;
   box-shadow: 0 20px 40px #a9a9a9;
+  width: 350px;
 }
 
 .e-commerce-logo {

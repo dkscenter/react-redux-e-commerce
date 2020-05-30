@@ -4,6 +4,8 @@ import AppContainer from "./containers/AppContainer";
 import LoginComponent from "./components/LoginComponent";
 import UserComponent from "./components/UserComponent";
 import RegisterComponent from "./components/RegisterComponent";
+import Shop from './components/ShopComponent';
+import Cart from './components/CartComponent';
 import {
   HashRouter as Router,
   Route,
@@ -21,6 +23,12 @@ function App() {
           </Route>
           <Route path="/user">
             <UserComponent />
+          </Route>
+          <Route path="/shop">
+            <Shop/>
+          </Route>
+          <Route path="/cart">
+            <Cart/>
           </Route>
           <Route path="/register">
             <RegisterComponent />
