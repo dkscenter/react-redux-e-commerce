@@ -55,7 +55,7 @@ class NavComponent extends Component {
             />
           </DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem>Checkout</DropdownItem>
+            <DropdownItem onClick={() => this.props.history.push('/cart')}>Checkout</DropdownItem>
             <DropdownItem onClick={() => this.showUserInfoModal()}>
               User Info
             </DropdownItem>

@@ -3,7 +3,7 @@ import axios from "axios";
 export const login = (payload, props) => {
   return (dispatch) => {
     axios.get("https://reqres.in/api/users/5").then((res) => {
-      props.history.push("/user");
+      props.history.push("/shop");
       return dispatch({
         type: "SET_USER",
         payload: res.data.data,
