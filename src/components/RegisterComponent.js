@@ -1,28 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setNumber, setUsername } from "../redux/actions/userActions";
 import { withRouter } from "react-router-dom";
-import { login } from "../redux/actions/authActions";
-import axios from "axios";
-import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+import { register } from "../redux/actions/authActions";
+import { Form, FormGroup, Input, Button, Alert } from "reactstrap";
 
-class LoginComponent extends Component {
+class RegisterComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
+      confirmPassword: "",
       profile: null,
       errors: [],
     };
-  }
-
-  componentDidMount() {
-    this.__checkAuth();
-  }
-
-  componentWillReceiveProps() {
-    this.__checkAuth();
   }
 
   __inputHandler = (e) => {
@@ -32,16 +23,17 @@ class LoginComponent extends Component {
   };
 
   __onSubmit = (e) => {
-    const { login, auth } = this.props;
-    const { email, password } = this.state;
+    const { register } = this.props;
+    const { email, password, confirmPassword } = this.state;
     let errors = [];
     e.preventDefault();
-    if (auth.email !== email && auth.password !== password) {
-      errors.push(
-        "Sorry. We couldn't find account with your email. Try again."
-      );
-    }
-    if (errors.length === 0) login(this.state, this.props);
+    if (!email || !password || !confirmPassword)
+      errors.push("Please complete all form.");
+    if (password !== confirmPassword)
+      errors.push("Password didn't match. Try again.");
+    if (password.length < 8 || confirmPassword.length < 8)
+      errors.push("Password must be at least 8 characters.");
+    if (errors.length === 0) register(this.state, this.props);
     this.setState({
       errors,
     });
@@ -53,13 +45,21 @@ class LoginComponent extends Component {
     }
   };
 
-  goToRegisterPage = () => {
+  componentDidMount() {
+    this.__checkAuth();
+  }
+
+  componentWillReceiveProps() {
+    this.__checkAuth();
+  }
+
+  goToLoginPage = () => {
     const { history } = this.props;
-    history.push("/register");
+    history.push("/login");
   };
 
   render() {
-    const { email, password, errors, errorTimeOut } = this.state;
+    const { email, password, confirmPassword, errors } = this.state;
     return (
       <div className="card-authentication">
         <img
@@ -72,9 +72,9 @@ class LoginComponent extends Component {
             {error}
           </Alert>
         ))}
-        <h3 className="mt-2 text-center">Welcome back</h3>
-        <small className="mb-2 text-center d-block">
-          Enter your Email and Password to login
+        <h3 className="mt-2 text-center">Redux E-Commerce</h3>
+        <small className="mb-5 mr-auto ml-auto text-center">
+          Please register to see something special!
         </small>
         <hr />
         <Form onSubmit={(e) => this.__onSubmit(e)}>
@@ -98,15 +98,25 @@ class LoginComponent extends Component {
               onChange={(e) => this.__inputHandler(e)}
             />
           </FormGroup>
+          <FormGroup>
+            <Input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              className="text-center"
+              value={confirmPassword}
+              onChange={(e) => this.__inputHandler(e)}
+            />
+          </FormGroup>
           <hr />
           <Button block color="primary" type="submit">
-            Sign In
+            Sign Up
           </Button>
           <small
             className="sub-text-authentication"
-            onClick={() => this.goToRegisterPage()}
+            onClick={() => this.goToLoginPage()}
           >
-            Have no account? Create new.
+            Already have account? Join us.
           </small>
         </Form>
       </div>
@@ -123,11 +133,9 @@ const mapStateToProps = ({ user, product, auth }) => {
 };
 
 const mapDispatchToProps = {
-  setNumber,
-  setUsername,
-  login,
+  register,
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LoginComponent)
+  connect(mapStateToProps, mapDispatchToProps)(RegisterComponent)
 );

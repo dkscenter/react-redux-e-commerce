@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class UserComponent extends Component {
+  componentWillMount() {
+    const { auth, history } = this.props;
+    if (!auth.isLogin) history.push("/login");
+  }
   render() {
     let { profile } = this.props.auth;
     return (
@@ -18,8 +23,10 @@ class UserComponent extends Component {
   }
 }
 
-export default connect(({ auth }) => {
-  return {
-    auth,
-  };
-})(UserComponent);
+export default withRouter(
+  connect(({ auth }) => {
+    return {
+      auth,
+    };
+  })(UserComponent)
+);
